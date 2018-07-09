@@ -10,5 +10,17 @@
                 {{$thread->body}}
             </div>
         </div>
+        <form class="mb-4 mt-4" action="/reply/{{$thread->id}}" method="POST">
+            @csrf
+            <div class="form-group">
+                <textarea class="form-control w-100" name="body" rows="10"></textarea>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-block btn-primary">Reply</button>
+            </div>
+        </form>
+        @foreach($thread->replies as $reply)
+            @include('threads.replies')
+        @endforeach
     </div>
 @endsection

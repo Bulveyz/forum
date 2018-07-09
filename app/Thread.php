@@ -28,4 +28,14 @@ class Thread extends Model
   {
     return $filter->filter($query);
   }
+
+  public function replies()
+  {
+    return $this->hasMany(Reply::class, 'thread_id')->latest();
+  }
+
+  public function addReply($reply)
+  {
+    return $this->replies()->create($reply);
+  }
 }

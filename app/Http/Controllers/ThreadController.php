@@ -23,6 +23,7 @@ class ThreadController extends Controller
 
   public function show(Channel $channel, Thread $thread)
   {
+    $thread = $thread->loadMissing('replies');
     return view('threads.show', compact('thread'));
   }
 
